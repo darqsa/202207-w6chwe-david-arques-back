@@ -1,7 +1,12 @@
 import "./loadEnvironment";
-import Debug from "debug";
-import chalk from "chalk";
+import connectDB from "./database";
 
-const debug = Debug("robots:index");
+const mongoUrl = process.env.DDBB;
 
-debug(chalk("Hola!!"));
+(async () => {
+  try {
+    await connectDB(mongoUrl);
+  } catch {
+    process.exit(1);
+  }
+})();
