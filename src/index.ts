@@ -1,7 +1,8 @@
 import "./loadEnvironment";
-import Debug from "debug";
-import chalk from "chalk";
+import startServer from "./server/startServer";
 
-const debug = Debug("robots:index");
+const port = process.env.PORT ?? 6666;
 
-debug(chalk("Hola!!"));
+(async () => {
+  await startServer(port as number);
+})();
