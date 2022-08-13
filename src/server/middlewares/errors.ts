@@ -1,4 +1,7 @@
+import chalk from "chalk";
+import { debug } from "console";
 import { NextFunction, Request, Response } from "express";
+import { CustomError } from "../../types/errors";
 
 export const notFoundError = (
   req: Request,
@@ -10,11 +13,17 @@ export const notFoundError = (
 };
 
 export const generalError = (
-  error: Error,
+  error: CustomError,
   req: Request,
   res: Response,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction
 ) => {
-  res.status(505).json({ error: "General pete" });
+  const errorStatus = error.statusCode ?? 500;
+  const publicErrorMessage = error.publicMessage ?? "General pete";
+  const privateErrorMessage = error.privateMessage;
+
+  debug(chalk.red(privateErrorMessage));
+
+  res.status(errorStatus).json({ error: publicErrorMessage });
 };
