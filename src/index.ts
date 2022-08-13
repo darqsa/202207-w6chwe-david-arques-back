@@ -1,9 +1,13 @@
 import "./loadEnvironment";
-import startServer from "./server/startServer";
+import startServer, { app } from "./server/startServer";
 import connectDB from "./database";
+import { generalError, notFoundError } from "./server/middlewares/errors";
 
 const port = process.env.PORT ?? 6666;
 const mongoUrl = process.env.DDBB;
+
+app.use(notFoundError);
+app.use(generalError);
 
 (async () => {
   try {

@@ -2,7 +2,7 @@ import express from "express";
 import Debug from "debug";
 import chalk from "chalk";
 
-const app = express();
+export const app = express();
 const debug = Debug("robots:index");
 
 const startServer = (port: number) =>
