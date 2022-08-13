@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
+import Robot from "../../database/models/Robot";
 
-const getRobots = (req: Request, res: Response) => {
-  res.status(200).json({ getRobots: "this is getRobots" });
+const getRobots = async (req: Request, res: Response) => {
+  const robots = await Robot.find();
+
+  res.status(200).json({ robots });
 };
 
 export default getRobots;
