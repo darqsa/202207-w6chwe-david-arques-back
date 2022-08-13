@@ -3,13 +3,8 @@ import { debug } from "console";
 import { NextFunction, Request, Response } from "express";
 import { CustomError } from "../../types/errors";
 
-export const notFoundError = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  res.status(404).json({ error: "Endpoint not Found." });
-  next();
+export const notFoundError = (req: Request, res: Response) => {
+  res.status(404).json({ error: "Endpoint not found" });
 };
 
 export const generalError = (
