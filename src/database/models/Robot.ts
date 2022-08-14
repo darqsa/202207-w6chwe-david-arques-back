@@ -1,5 +1,24 @@
 import { model, Schema } from "mongoose";
 
+const statsSchema = new Schema({
+  strength: {
+    type: Number,
+    min: 0,
+    max: 10,
+    required: true,
+  },
+  speed: {
+    type: Number,
+    min: 0,
+    max: 10,
+    required: true,
+  },
+  creationDate: {
+    type: Date,
+    required: true,
+  },
+});
+
 const robotSchema = new Schema({
   name: {
     type: String,
@@ -10,6 +29,8 @@ const robotSchema = new Schema({
     type: String,
     required: true,
   },
+
+  stats: statsSchema,
 });
 
 const Robot = model("Robot", robotSchema, "robots");

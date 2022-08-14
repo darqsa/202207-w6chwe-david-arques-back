@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { CustomError } from "../../types/errors";
+import { CustomError } from "../../types/interfaces";
 import { generalError, notFoundError } from "./errors";
 
 describe("Given a notFoundError function", () => {
@@ -37,6 +37,7 @@ describe("Given a generalError function", () => {
         json: jest.fn(),
       } as Partial<Response>;
       const next = () => {};
+
       test("Then it should call the response method with 222", () => {
         const status = 222;
 

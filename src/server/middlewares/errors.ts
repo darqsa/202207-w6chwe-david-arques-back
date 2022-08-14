@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { debug } from "console";
 import { NextFunction, Request, Response } from "express";
-import { CustomError } from "../../types/errors";
+import { CustomError } from "../../types/interfaces";
 
 export const notFoundError = (req: Request, res: Response) => {
   res.status(404).json({ error: "Endpoint not found" });
@@ -15,7 +15,7 @@ export const generalError = (
   next: NextFunction
 ) => {
   const errorStatus = error.statusCode ?? 500;
-  const publicErrorMessage = error.publicMessage ?? "General pete";
+  const publicErrorMessage = error.publicMessage ?? "General error";
   const privateErrorMessage = error.privateMessage;
 
   debug(chalk.red(privateErrorMessage));

@@ -1,4 +1,4 @@
-import { CustomError } from "../types/errors";
+import { CustomError } from "../types/interfaces";
 
 const createCustomError = (code: number, message: string) => {
   const error = new Error() as CustomError;
@@ -8,4 +8,5 @@ const createCustomError = (code: number, message: string) => {
 
   return error;
 };
+
 export default createCustomError;
