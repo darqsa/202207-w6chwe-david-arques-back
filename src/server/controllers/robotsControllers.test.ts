@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Robot from "../../database/models/Robot";
-import getRobots from "./robotsControllers";
+import { getRobots } from "./robotsControllers";
 
 describe("Given a getRobots controller", () => {
   describe("When it recives a response", () => {

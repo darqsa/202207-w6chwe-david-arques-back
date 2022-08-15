@@ -1,10 +1,26 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import Robot from "../../database/models/Robot";
+import createCustomError from "../../utils/errors";
 
-const getRobots = async (req: Request, res: Response) => {
+export const getRobots = async (req: Request, res: Response) => {
   const robots = await Robot.find();
 
   res.status(200).json({ robots });
 };
 
-export default getRobots;
+export const createRobot = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const robot = req.body;
+
+  try {
+    const newRobot = await Robot.create(robot);
+
+    res.status(201).json({ robot: newRobot });
+  } catch (error) {
+    const customError = createCustomError(400, "Error creating robot");
+    next(customError);
+  }
+};
