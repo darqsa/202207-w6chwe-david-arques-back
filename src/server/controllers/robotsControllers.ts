@@ -1,15 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import Robot from "../../database/models/Robot";
-import { RobotDBResponse } from "../../types/interfaces";
 import createCustomError from "../../utils/errors";
-import parseRobotDB from "../../utils/parseRobotDB";
 
 export const getRobots = async (req: Request, res: Response) => {
-  const robotsDB = await Robot.find();
-
-  const robots = robotsDB.map((robot) =>
-    parseRobotDB(robot as RobotDBResponse)
-  );
+  const robots = await Robot.find();
 
   res.status(200).json({ robots });
 };
