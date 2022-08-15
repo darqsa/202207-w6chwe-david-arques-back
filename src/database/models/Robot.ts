@@ -13,10 +13,6 @@ const statsSchema = new Schema({
     max: 10,
     required: true,
   },
-  creationDate: {
-    type: Date,
-    required: true,
-  },
 });
 
 const robotSchema = new Schema({
@@ -27,6 +23,11 @@ const robotSchema = new Schema({
 
   image: {
     type: String,
+    required: true,
+  },
+
+  creationDate: {
+    type: Date,
     required: true,
   },
 

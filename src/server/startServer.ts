@@ -1,12 +1,10 @@
-import express from "express";
 import Debug from "debug";
 import chalk from "chalk";
+import app from ".";
 
 const debug = Debug("robots:server:index");
 
-export const app = express();
-
-export const startServer = (port: number) =>
+const startServer = (port: number) =>
   new Promise((resolve, reject) => {
     const server = app.listen(port, () => {
       debug(chalk.blue(`Server listening on http://localhost:${port}`));
@@ -18,3 +16,5 @@ export const startServer = (port: number) =>
       reject(error);
     });
   });
+
+export default startServer;
