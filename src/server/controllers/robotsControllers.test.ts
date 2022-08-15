@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Robot from "../../database/models/Robot";
-import getRobots from "./robotsControllers";
+import { getRobots } from "./robotsControllers";
 
 jest.mock("../../utils/parseRobotDB", () =>
   jest.fn().mockReturnValueOnce("WallE").mockReturnValueOnce("Laika")
