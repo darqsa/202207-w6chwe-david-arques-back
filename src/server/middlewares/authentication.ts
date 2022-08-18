@@ -1,10 +1,9 @@
 import { NextFunction, Request, Response } from "express";
-import { JwtPayload } from "jsonwebtoken";
 import createCustomError from "../../utils/errors";
-import { verifyToken } from "../../utils/auth";
+import { JWTPayload, verifyToken } from "../../utils/auth";
 
-interface CustomRequest extends Request {
-  payload: JwtPayload;
+export interface CustomRequest extends Request {
+  payload: JWTPayload;
 }
 
 const authentication = (
@@ -26,7 +25,7 @@ const authentication = (
     next(error);
     return;
   }
-  req.payload = tokenData as JwtPayload;
+  req.payload = tokenData as JWTPayload;
   next();
 };
 export default authentication;

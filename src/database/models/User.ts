@@ -10,15 +10,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-});
-
-userSchema.set("toJSON", {
-  transform: (doc, ret) => {
-    const newDocument = { ...ret };
-
-    delete newDocument.passWord;
-    return newDocument;
-  },
+  robots: [{ type: Schema.Types.ObjectId, ref: "Robot" }],
 });
 
 const User = model("User", userSchema, "users");
