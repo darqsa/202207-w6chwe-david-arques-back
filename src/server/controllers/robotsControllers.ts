@@ -13,12 +13,13 @@ export const createRobot = async (
   res: Response,
   next: NextFunction
 ) => {
-  const robot = req.body;
-
   try {
-    const newRobot = await Robot.create(robot);
+    const newRobot = new Robot(req.body);
 
-    res.status(201).json({ robot: newRobot });
+    await newRobot.save();
+    res.status(200).json({ newRobot });
+
+    next();
   } catch (error) {
     const customError = createCustomError(400, "Error creating robot");
     next(customError);

@@ -1,3 +1,4 @@
+import { debug } from "console";
 import { NextFunction, Request, Response } from "express";
 import User from "../../database/models/User";
 import {
@@ -14,7 +15,6 @@ export const loginUser = async (
   next: NextFunction
 ) => {
   const user = req.body as LoginData;
-
   interface UserData {
     userName: string;
     passWord: string;
@@ -81,7 +81,6 @@ export const registerUser = async (
   user.passWord = await createHash(user.passWord);
   try {
     const newUser = await User.create(user);
-
     res.status(201).json({ user: newUser });
   } catch (error) {
     const customError = createCustomError(400, "Error creating user");
