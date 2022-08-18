@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 
 const statsSchema = new Schema({
   strength: {
@@ -30,8 +30,24 @@ const robotSchema = new Schema({
     type: Date,
     required: true,
   },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 
   stats: statsSchema,
+});
+
+mongoose.set("toJSON", {
+  virtuals: true,
+  transform: (doc, ret) => {
+    const newDocument = { ...ret };
+    // eslint-disable-next-line no-underscore-dangle
+    delete newDocument.__v;
+    // eslint-disable-next-line no-underscore-dangle
+    delete newDocument._id;
+    return newDocument;
+  },
 });
 
 const Robot = model("Robot", robotSchema, "robots");

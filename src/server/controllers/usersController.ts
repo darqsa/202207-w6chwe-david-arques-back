@@ -1,4 +1,3 @@
-import { debug } from "console";
 import { NextFunction, Request, Response } from "express";
 import User from "../../database/models/User";
 import {
